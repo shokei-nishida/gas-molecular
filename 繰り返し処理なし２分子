@@ -1,0 +1,54 @@
+from vpython import * 
+scene.autoscale = False 
+# ball という名前の sphere をつくる 
+ball= sphere(pos=vector(1,2,3), radius=0.3, color=color.cyan,make_trail=True) 
+ball2= sphere(pos=vector(0,5,4), radius=0.3, color=color.red,make_trail=True) 
+#wallR という名前の box をつくる 
+wallR = box(pos=vector(6,0,0), size=vector(0.2,12,12), color=color.red) 
+wallL = box(pos=vector(-6,0,0), size=vector(0.2,12,12), color=color.green)
+wallU=box(pos=vector(0,6,0), size=vector(12,0.2,12), color=color.yellow)
+wallD=box(pos=vector(0,-6,0), size=vector(12,0.2,12), color=color.blue)
+wallB=box(pos=vector(0,0,-6), size=vector(12,12,0.2), color=color.orange)
+ball.velocity = vector(1,1,3)
+ball2.velocity=vector(-2,1,-4)#ball の速度を設定する 
+deltat = 0.005 #時間の刻み 
+t = 0 
+for i in range(100000):
+    ball.pos = ball.pos + ball.velocity*deltat 
+    ball2.pos = ball2.pos + ball2.velocity*deltat
+    print("\r", "time {0:6.2f}".format(t), end="") #改行しないで上書きしていく 
+    rate(2000)
+    if ball.pos.x >= 6 :
+        ball.velocity.x = ball.velocity.x * (-1)
+    if ball.pos.x <= -6 :
+        ball.velocity.x = ball.velocity.x * (-1)
+    
+    if ball.pos.y >= 6 :
+        ball.velocity.y = ball.velocity.y * (-1)
+        
+    if ball.pos.y <= -6 :
+        ball.velocity.y= ball.velocity.y * (-1)    
+        
+    if ball.pos.z>= 6 :
+        ball.velocity.z = ball.velocity.z * (-1)
+        
+    if ball.pos.z <= -6 :
+        ball.velocity.z= ball.velocity.z * (-1)
+        
+    if ball2.pos.x >= 6 :
+        ball2.velocity.x = ball2.velocity.x * (-1)
+    if ball2.pos.x <= -6 :
+        ball2.velocity.x = ball2.velocity.x * (-1)
+    
+    if ball2.pos.y >= 6 :
+        ball2.velocity.y = ball2.velocity.y * (-1)
+        
+    if ball2.pos.y <= -6 :
+        ball2.velocity.y= ball2.velocity.y * (-1)    
+        
+    if ball2.pos.z>= 6 :
+        ball2.velocity.z = ball2.velocity.z * (-1)
+        
+    if ball2.pos.z <= -6 :
+        ball2.velocity.z= ball2.velocity.z * (-1)        
+        
